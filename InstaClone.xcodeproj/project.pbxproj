@@ -8,18 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		3D2CAA9B2544A42900CCC033 /* InstaCloneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2CAA9A2544A42900CCC033 /* InstaCloneApp.swift */; };
-		3D2CAA9D2544A42900CCC033 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2CAA9C2544A42900CCC033 /* ContentView.swift */; };
+		3D2CAA9D2544A42900CCC033 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2CAA9C2544A42900CCC033 /* FeedView.swift */; };
 		3D2CAA9F2544A42900CCC033 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D2CAA9E2544A42900CCC033 /* Assets.xcassets */; };
 		3D2CAAA22544A42900CCC033 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D2CAAA12544A42900CCC033 /* Preview Assets.xcassets */; };
+		3D2CAAAB2544A53000CCC033 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2CAAAA2544A53000CCC033 /* AppView.swift */; };
+		3D2CAAAF2544A58500CCC033 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2CAAAE2544A58500CCC033 /* ProfileView.swift */; };
+		3D2CAAB42544A60600CCC033 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2CAAB32544A60600CCC033 /* SearchView.swift */; };
+		3D2CAAB72544A66800CCC033 /* AddContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2CAAB62544A66800CCC033 /* AddContentView.swift */; };
+		3D2CAABA2544A6CF00CCC033 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2CAAB92544A6CF00CCC033 /* ActivityView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3D2CAA972544A42900CCC033 /* InstaClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D2CAA9A2544A42900CCC033 /* InstaCloneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstaCloneApp.swift; sourceTree = "<group>"; };
-		3D2CAA9C2544A42900CCC033 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		3D2CAA9C2544A42900CCC033 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		3D2CAA9E2544A42900CCC033 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3D2CAAA12544A42900CCC033 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3D2CAAA32544A42900CCC033 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3D2CAAAA2544A53000CCC033 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
+		3D2CAAAE2544A58500CCC033 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		3D2CAAB32544A60600CCC033 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		3D2CAAB62544A66800CCC033 /* AddContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContentView.swift; sourceTree = "<group>"; };
+		3D2CAAB92544A6CF00CCC033 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,7 +63,12 @@
 			isa = PBXGroup;
 			children = (
 				3D2CAA9A2544A42900CCC033 /* InstaCloneApp.swift */,
-				3D2CAA9C2544A42900CCC033 /* ContentView.swift */,
+				3D2CAAAA2544A53000CCC033 /* AppView.swift */,
+				3D2CAA9C2544A42900CCC033 /* FeedView.swift */,
+				3D2CAAB32544A60600CCC033 /* SearchView.swift */,
+				3D2CAAB62544A66800CCC033 /* AddContentView.swift */,
+				3D2CAAB92544A6CF00CCC033 /* ActivityView.swift */,
+				3D2CAAAE2544A58500CCC033 /* ProfileView.swift */,
 				3D2CAA9E2544A42900CCC033 /* Assets.xcassets */,
 				3D2CAAA32544A42900CCC033 /* Info.plist */,
 				3D2CAAA02544A42900CCC033 /* Preview Content */,
@@ -138,8 +153,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D2CAA9D2544A42900CCC033 /* ContentView.swift in Sources */,
+				3D2CAAB42544A60600CCC033 /* SearchView.swift in Sources */,
+				3D2CAAAF2544A58500CCC033 /* ProfileView.swift in Sources */,
+				3D2CAAB72544A66800CCC033 /* AddContentView.swift in Sources */,
+				3D2CAA9D2544A42900CCC033 /* FeedView.swift in Sources */,
+				3D2CAABA2544A6CF00CCC033 /* ActivityView.swift in Sources */,
 				3D2CAA9B2544A42900CCC033 /* InstaCloneApp.swift in Sources */,
+				3D2CAAAB2544A53000CCC033 /* AppView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
