@@ -34,26 +34,35 @@ struct FeedView: View {
                     .padding(.vertical, 15)
                 }
                 // Extract this out as 'PostsView'
-                ScrollView(showsIndicators: false) {
+                ScrollView(.vertical, showsIndicators: false) {
                     ForEach(1...20, id: \.self) { post in
                         VStack {
+                            HStack {
+                                Circle()
+                                    .frame(width: 40, height: 40)
+                                Text("jonnyboi13")
+                                    .font(.footnote)
+                                    .bold()
+                                    Spacer()
+                            }
+                            .padding(.leading, 10)
                             Rectangle()
                                 .frame(maxWidth: .infinity)
                                 .frame(height: 450)
                                 .foregroundColor(.secondary)
                             
-                            VStack(alignment: .leading, spacing: 10) {
-                                HStack {
+                            VStack(alignment: .leading, spacing: 1) {
+                                HStack(spacing: 18) {
                                     Image(systemName: "heart")
                                     Image(systemName: "bubble.right")
                                     Image(systemName: "paperplane")
                                     Spacer()
                                     Image(systemName: "bookmark")
-                                        .padding(.horizontal, 8)
+                                        .padding(.horizontal, 15)
                                 }
-                                .font(.headline)
-                                .padding(.top, 5)
-                                VStack(alignment: .leading, spacing: 5) {
+                                .font(.title2)
+                                .padding(.vertical, 7)
+                                VStack(alignment: .leading, spacing: 8) {
                                     Text("731 Likes")
                                         .bold()
                                     HStack(alignment: .bottom, spacing: 3) {
@@ -68,16 +77,16 @@ struct FeedView: View {
                                             .bold()
                                         Text("It sux bro!")
                                     }
-
+                                    Text("25 minutes ago")
+                                        .foregroundColor(.secondary)
                                 }
-                                .font(.caption)
+                                .font(.footnote)
                             }
                             .padding(.leading, 10)
-                            
                         }
+                        .padding(.bottom, 10)
                     }
                 }
-                .frame(height: .infinity)
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -85,16 +94,15 @@ struct FeedView: View {
                     Text("Instagram")
                         .font(.title)
                 }
-                ToolbarItem {
+                ToolbarItem(placement: .navigationBarTrailing) {
                     Image(systemName: "paperplane")
                         .font(.title)
                 }
-                ToolbarItem(placement: .navigation) {
+                ToolbarItem(placement: .navigationBarLeading) {
                     Image(systemName: "camera")
                         .font(.title)
                 }
             }
-            
         }
     }
 }

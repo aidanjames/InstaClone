@@ -9,11 +9,6 @@ import SwiftUI
 
 struct AppView: View {
     
-    init() {
-        UITabBar.appearance().isTranslucent = false
-        UITabBar.appearance().barTintColor = UIColor(named: "Secondary")
-        }
-    
     var body: some View {
         TabView {
             FeedView()
