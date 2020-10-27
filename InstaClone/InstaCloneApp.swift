@@ -9,9 +9,16 @@ import SwiftUI
 
 @main
 struct InstaCloneApp: App {
+    
+    @ObservedObject var viewModel = FeedViewModel()
+    
     var body: some Scene {
         WindowGroup {
-            AppView()
+            if viewModel.signedOnUser == nil {
+                SignOnPage()
+            } else {
+                AppView(viewModel: viewModel)
+            }
         }
     }
 }

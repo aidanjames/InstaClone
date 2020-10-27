@@ -9,9 +9,11 @@ import SwiftUI
 
 struct AppView: View {
     
+    @ObservedObject var viewModel: FeedViewModel
+    
     var body: some View {
         TabView {
-            FeedView()
+            FeedView(viewModel: viewModel)
                 .tabItem {
                     Image(systemName: "house.fill")
                     Text("")
@@ -43,6 +45,6 @@ struct AppView: View {
 
 struct AppView_Previews: PreviewProvider {
     static var previews: some View {
-        AppView()
+        AppView(viewModel: FeedViewModel())
     }
 }
