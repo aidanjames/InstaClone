@@ -5,7 +5,7 @@
 //  Created by Aidan Pendlebury on 27/10/2020.
 //
 
-import Foundation
+import SwiftUI
 
 enum PreviewMockData {
     
@@ -25,12 +25,19 @@ enum PreviewMockData {
         var anotherPost = Post(postedBy: celebrity, postType: .photo, postUrl: "rockDad")
         anotherPost.postText = "This is dad back in the day..."
         
+        let storyPost = Post(postedBy: celebrity, postType: .story, postUrl: "")
+        
         celebrity.posts.append(aPost)
         celebrity.posts.append(anotherPost)
+        celebrity.posts.append(storyPost)
         
         primaryUser.following.append(celebrity)
         
         return primaryUser
+    }
+    
+    static func returnTinyProfileImage() -> some View {
+        return Image("primaryProfile").resizable().scaledToFit().frame(width: 10, height: 10)
     }
     
 }

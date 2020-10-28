@@ -19,7 +19,7 @@ class FeedViewModel: ObservableObject {
         
         if let user = self.signedOnUser {
             for influencer in user.following {
-                for post in influencer.posts {
+                for post in influencer.posts.filter({ $0.postType == .photo || $0.postType == .video }) {
                     postsToReturn.append(post)
                 }
             }

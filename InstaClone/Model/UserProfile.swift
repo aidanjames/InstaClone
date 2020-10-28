@@ -23,6 +23,11 @@ struct UserProfile: Identifiable, Codable {
     var pendingFollowerRequests = [UserProfile]()
     var pendingFollowRequests = [UserProfile]()
     var chats = [Chat]()
+    
+    var hasUnseenStories: Bool {
+        // return false
+         return posts.filter { $0.postType == .story }.count > 0 // add a test for whether they are unseen
+    }
 }
 
 enum PostType: String, Codable {

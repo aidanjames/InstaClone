@@ -11,31 +11,12 @@ struct FeedView: View {
     
     @ObservedObject var viewModel: FeedViewModel
     
-//    init() {
-//        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
-//    }
-    
     var body: some View {
         NavigationView {
             VStack {
-                // Extract this out as 'StoriesView'
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack {
-                        ForEach(1...20, id: \.self) { story in
-                            VStack(spacing: 5) {
-                                Circle()
-                                    .frame(width: 50, height: 50)
-                                Text("Name\(story)")
-                                    .font(.caption)
-                            }
-                            .padding(5)
-                        }
-                    }
-                    .frame(height: 100)
-                    .padding(.leading, 8)
-                    .padding(.vertical, 15)
-                }
                 ScrollView(.vertical, showsIndicators: false) {
+                    StoriesListView(viewModel: viewModel)
+                    Divider()
                     ForEach(viewModel.getPostsForFeed()) { post in
                         PostListView(post: post)
                     }

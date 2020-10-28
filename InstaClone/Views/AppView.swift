@@ -35,7 +35,7 @@ struct AppView: View {
                 }
             ProfileView()
                 .tabItem {
-                    Image(systemName: "face.smiling")
+                    Image(systemName: "person.crop.circle")
                     Text("")
                 }
         }
