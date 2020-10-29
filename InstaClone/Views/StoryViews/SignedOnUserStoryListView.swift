@@ -31,13 +31,21 @@ struct SignedOnUserStoryListView: View {
             }
             Text("Your story")
                 .font(.caption)
+                .frame(maxWidth: 65)
         }
-        .padding(.horizontal, 5)
+        .padding(.leading, 5)
     }
 }
 
 struct SignedOnUserStoryView_Previews: PreviewProvider {
     static var previews: some View {
-        SignedOnUserStoryListView(user: PreviewMockData.getSignedOnUser())
+        ScrollView(.horizontal) {
+            HStack {
+                SignedOnUserStoryListView(user: PreviewMockData.getSignedOnUser())
+                InfluencerStoryListView(user: PreviewMockData.getSignedOnUser().following.first!)
+                InfluencerStoryListView(user: PreviewMockData.getSignedOnUser().following.last!)
+            }
+
+        }
     }
 }

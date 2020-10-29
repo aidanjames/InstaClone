@@ -21,9 +21,11 @@ enum PreviewMockData {
         aPost.comments.append(PostComment(commentor: primaryUser, comment: "Jk... obvs 🙂"))
         aPost.likedBy.append(primaryUser)
         aPost.likedBy.append(celebrity)
+        aPost.date = Date().addingTimeInterval(-700000)
         
         var anotherPost = Post(postedBy: celebrity, postType: .photo, postUrl: "rockDad")
         anotherPost.postText = "This is dad back in the day..."
+        aPost.date = Date().addingTimeInterval(-300)
         
         let storyPost = Post(postedBy: celebrity, postType: .story, postUrl: "")
         
@@ -31,7 +33,32 @@ enum PreviewMockData {
         celebrity.posts.append(anotherPost)
         celebrity.posts.append(storyPost)
         
+        var celebrity2 = UserProfile(userName: "kimkardashian", name: "Kim Kardashian West", imageUrl: "tertiaryProfile")
+        
+        var aPost2 = Post(postedBy: celebrity2, postType: .photo, postUrl: "normal")
+        aPost2.postText = "40 and feeling so humbled and blessed. There is not a single day that I take for granted, especially during these times when we are all reminded of the things that truly matter. #ThisIs40"
+        aPost2.comments.append(PostComment(commentor: celebrity, comment: "WTF?"))
+        aPost2.comments.append(PostComment(commentor: celebrity, comment: "You fucking suck."))
+        aPost2.comments.append(PostComment(commentor: celebrity, comment: "No words."))
+        aPost2.comments.append(PostComment(commentor: celebrity, comment: "I’m really happy for you. My Dad died and we couldn’t have a funeral."))
+        aPost2.comments.append(PostComment(commentor: celebrity, comment: "Duuuuuude."))
+        aPost2.comments.append(PostComment(commentor: primaryUser, comment: "Sharing this lavish party, while record numbers of Americans are in line all day at food banks, hoping they don't run out - I am as speechless as Kim Kardashian is clueless!"))
+        aPost2.likedBy.append(primaryUser)
+        aPost2.likedBy.append(celebrity)
+        aPost2.date = Date().addingTimeInterval(-3700)
+        
+        var anotherPost2 = Post(postedBy: celebrity2, postType: .photo, postUrl: "meAndKanye")
+        anotherPost2.postText = "Sorry about my last post #Awkward"
+        
+        let storyPost2 = Post(postedBy: celebrity2, postType: .story, postUrl: "")
+        
+        celebrity2.posts.append(aPost2)
+        celebrity2.posts.append(anotherPost2)
+        celebrity2.posts.append(storyPost2)
+        
+        
         primaryUser.following.append(celebrity)
+        primaryUser.following.append(celebrity2)
         
         return primaryUser
     }

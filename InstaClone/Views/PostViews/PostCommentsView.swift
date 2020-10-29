@@ -14,19 +14,18 @@ struct PostCommentsView: View {
         VStack(alignment: .leading, spacing: 8) {
             Text("\(post.likedBy.count) likes")
                 .bold()
-            HStack(alignment: .bottom, spacing: 3) {
+            Group {
                 Text(post.postedBy.userName)
                     .bold()
-                if let postText = post.postText {
-                    Text(postText)
-                }
-            }
+                    + Text(" \(post.postText ?? "")")
+            }.lineLimit(2)
+            
             if let firstComment = post.comments.first {
-                HStack(spacing: 3) {
+                Group {
                     Text(firstComment.commentor.userName)
                         .bold()
-                    Text(firstComment.comment)
-                }
+                        + Text(" \(firstComment.comment)")
+                }.lineLimit(2)
             }
             if post.comments.count > 2 {
                 Text("View all \(post.comments.count) comments")
@@ -34,17 +33,21 @@ struct PostCommentsView: View {
             }
             
             if let lastComment = post.comments.last {
-                HStack(spacing: 3) {
+                Group {
                     Text(lastComment.commentor.userName)
                         .bold()
-                    Text(lastComment.comment)
-                }
+                        + Text(" \(lastComment.comment)")
+                }.lineLimit(2)
             }
-            // Get a proper time for this
-            Text("25 minutes ago")
+            Text(Date().timeSince(post.date))
                 .foregroundColor(.secondary)
+
         }
         .font(.footnote)
+    }
+    
+    func calculateDifferenceBetween(date1: Date, date2: Date) -> TimeInterval {
+        return date1.timeIntervalSince(date2)
     }
 }
 

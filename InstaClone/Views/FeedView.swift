@@ -25,7 +25,7 @@ struct FeedView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .principal) {
-                    Text("Instagram")
+                    Text("Fakegram")
                         .font(.title)
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {

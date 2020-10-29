@@ -26,6 +26,7 @@ struct InfluencerStoryListView: View {
             }
             Text(user.userName)
                 .font(.caption)
+                .frame(maxWidth: 65)
         }
         .padding(.horizontal, 5)
     }

@@ -10,9 +10,7 @@ import SwiftUI
 class FeedViewModel: ObservableObject {
     @Published var signedOnUser: UserProfile?
     
-    init() {
-        signedOnUser = PreviewMockData.getSignedOnUser()
-    }
+    init() { signedOnUser = PreviewMockData.getSignedOnUser() }
     
     func getPostsForFeed() -> [Post] {
         var postsToReturn = [Post]()
