@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PostListView: View {
+    @ObservedObject var viewModel: FeedViewModel
     var post: Post
     
     var body: some View {
@@ -16,8 +17,11 @@ struct PostListView: View {
             Image(post.postUrl)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
+                .onTapGesture(count: 2) {
+                    viewModel.doubleTapped(post: post)
+                }
             VStack(alignment: .leading, spacing: 1) {
-                PostActionRibbonView(post: post)
+                PostActionRibbonView(viewModel: viewModel, post: post)
                 PostCommentsView(post: post)
             }
             .padding(.leading, 10)
@@ -28,6 +32,6 @@ struct PostListView: View {
 
 struct PostListView_Previews: PreviewProvider {
     static var previews: some View {
-        PostListView(post: PreviewMockData.getSignedOnUser().following.first!.posts.first!)
+        PostListView(viewModel: FeedViewModel(), post: PreviewMockData.getSignedOnUser().following.first!.posts.first!)
     }
 }

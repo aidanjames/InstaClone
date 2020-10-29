@@ -18,7 +18,7 @@ struct FeedView: View {
                     StoriesListView(viewModel: viewModel)
                     Divider()
                     ForEach(viewModel.getPostsForFeed()) { post in
-                        PostListView(post: post)
+                        PostListView(viewModel: viewModel, post: post)
                     }
                 }
             }

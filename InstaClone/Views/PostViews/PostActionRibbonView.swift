@@ -8,11 +8,21 @@
 import SwiftUI
 
 struct PostActionRibbonView: View {
+    @ObservedObject var viewModel: FeedViewModel
     var post: Post
+    
+    var userLikesPost: Bool {
+        viewModel.signedOnUser!.likes.contains { $0.id == post.id }
+    }
     
     var body: some View {
         HStack(spacing: 18) {
-            Image(systemName: "heart")
+            Button(action: {
+                viewModel.tappedLikeButton(for: post)
+            } ) {
+                Image(systemName: userLikesPost  ? "heart.fill" : "heart")
+                    .foregroundColor(userLikesPost  ? .red : .primary)
+            }
             Image(systemName: "bubble.right")
             Image(systemName: "paperplane")
             Spacer()
@@ -26,6 +36,6 @@ struct PostActionRibbonView: View {
 
 struct PostActionRibbonView_Previews: PreviewProvider {
     static var previews: some View {
-        PostActionRibbonView(post: PreviewMockData.getSignedOnUser().following.first!.posts.first!)
+        PostActionRibbonView(viewModel: FeedViewModel(), post: PreviewMockData.getSignedOnUser().following.first!.posts.first!)
     }
 }

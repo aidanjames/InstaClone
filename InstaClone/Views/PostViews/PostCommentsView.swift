@@ -12,8 +12,10 @@ struct PostCommentsView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("\(post.likedBy.count) likes")
-                .bold()
+            if !post.likedBy.isEmpty {
+                Text("\(post.likedBy.count) \(post.likedBy.count == 1 ? "like" : "likes")")
+                    .bold()
+            }
             Group {
                 Text(post.postedBy.userName)
                     .bold()
