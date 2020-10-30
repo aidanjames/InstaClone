@@ -23,6 +23,7 @@ struct PostListView: View {
                         viewModel.doubleTapped(post: post)
                         withAnimation(.spring(response: 0.2, dampingFraction: 0.5, blendDuration: 2)) {
                             heartScale = 2
+                            Haptics.simpleSuccess()
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                                 heartScale = 0
                             }
