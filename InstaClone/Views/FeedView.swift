@@ -17,7 +17,7 @@ struct FeedView: View {
                 ScrollView(.vertical, showsIndicators: false) {
                     StoriesListView(viewModel: viewModel)
                     Divider()
-                    ForEach(viewModel.getPostsForFeed()) { post in
+                    ForEach(viewModel.postsForMainFeed) { post in
                         PostListView(viewModel: viewModel, post: post)
                     }
                 }
@@ -44,6 +44,6 @@ struct FeedView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        FeedView(viewModel: FeedViewModel())
+        FeedView(viewModel: FeedViewModel(userName: "aidanjames"))
     }
 }

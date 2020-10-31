@@ -18,7 +18,7 @@ struct SignedOnUserStoryListView: View {
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 60, height: 60)
                     .clipShape(Circle())
-                if user.hasUnseenStories {
+                if DataUniverse.shared.userHasUnseenStories(signedOnUser: user, user: user) {
                     Circle()
                         .stroke(Color.pink, lineWidth: 2)
                         .frame(width: 65, height: 65)
@@ -41,9 +41,9 @@ struct SignedOnUserStoryView_Previews: PreviewProvider {
     static var previews: some View {
         ScrollView(.horizontal) {
             HStack {
-                SignedOnUserStoryListView(user: PreviewMockData.getSignedOnUser())
-                InfluencerStoryListView(user: PreviewMockData.getSignedOnUser().following.first!)
-                InfluencerStoryListView(user: PreviewMockData.getSignedOnUser().following.last!)
+                SignedOnUserStoryListView(user: DataUniverse.shared.allUsers.first!)
+                InfluencerStoryListView(signedOnUser: DataUniverse.shared.allUsers.first!, user: DataUniverse.shared.allUsers[1])
+                InfluencerStoryListView(signedOnUser: DataUniverse.shared.allUsers.first!, user: DataUniverse.shared.allUsers[2])
             }
 
         }

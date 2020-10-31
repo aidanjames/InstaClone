@@ -15,19 +15,15 @@ struct UserProfile: Identifiable, Codable {
     var webSite: String?
     var bio: String?
     var isPrivate = false
-    var followers = [UserProfile]()
-    var following = [UserProfile]()
-    var posts = [Post]()
-    var likes = [Post]() // Create a new object for likes
-    var savedPosts = [Post]()
-    var pendingFollowerRequests = [UserProfile]()
-    var pendingFollowRequests = [UserProfile]()
-    var chats = [Chat]()
-    
-    var hasUnseenStories: Bool {
-        // return false
-         return posts.filter { $0.postType == .story }.count > 0 // add a test for whether they are unseen
-    }
+    var followers = Set<UUID>()  // user id
+    var following = Set<UUID>()  // user id
+    var posts = Set<UUID>()  // post id
+    var likes = Set<UUID>()  // like id
+    var savedPosts = Set<UUID>()  // post id
+    var pendingFollowerRequests = Set<UUID>()  // user id
+    var pendingFollowRequests = Set<UUID>()  // user id
+    var chats = Set<UUID>()  // chat id
+    var seenPosts = Set<UUID>() // post id
 }
 
 enum PostType: String, Codable {
@@ -40,32 +36,42 @@ enum PostType: String, Codable {
 struct Post: Identifiable, Codable {
     var id = UUID()
     var date = Date()
-    var postedBy: UserProfile
+    var postedBy: UUID // posting user id
     var postType: PostType
     var postUrl: String
     var postText: String?
-    var taggedPeople = [UserProfile]()
-    var location: String?
-    var comments = [PostComment]()
-    var likedBy = [UserProfile]()
+    var taggedPeople = Set<UUID>() // user id
+    var location: String? // coordinates
+    var comments = Set<UUID>() // comment id
+    var likes = Set<UUID>() // like id
+    var seenBy = Set<UUID>() // user id
 }
 
 struct PostComment: Identifiable, Codable {
     var id = UUID()
     var date = Date()
-    var commentor: UserProfile
+    var commentor: UUID // user id
     var comment: String
-    var numberOfLikes = 0
+    var likes = Set<UUID>()  // like id
+    var inReplyTo: UUID? // post comment id
 }
 
 struct DirectMessage: Identifiable, Codable {
     var id = UUID()
-    var from: UserProfile
-    var linkedChat: Chat
-    var dateAndTime: Date
+    var date = Date()
+    var from: UUID // user id
+    var linkedChat: UUID // chat id
+    var chatText: String
 }
 
 struct Chat: Identifiable, Codable {
     var id = UUID()
-    var messages: [DirectMessage]
+    var messages = Set<UUID>()  // direct message id
+}
+
+struct Like: Identifiable, Codable {
+    var id = UUID()
+    var date = Date()
+    var liker: UUID // id of user profile who likes post
+    var postOrComment: UUID // id of post
 }

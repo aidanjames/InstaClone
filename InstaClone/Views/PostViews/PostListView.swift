@@ -20,7 +20,7 @@ struct PostListView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .onTapGesture(count: 2) {
-                        viewModel.doubleTapped(post: post)
+                        viewModel.doubleTappedPost(post)
                         withAnimation(.spring(response: 0.2, dampingFraction: 0.5, blendDuration: 2)) {
                             heartScale = 2
                             Haptics.simpleSuccess()
@@ -47,6 +47,6 @@ struct PostListView: View {
 
 struct PostListView_Previews: PreviewProvider {
     static var previews: some View {
-        PostListView(viewModel: FeedViewModel(), post: PreviewMockData.getSignedOnUser().following.first!.posts.first!)
+        PostListView(viewModel: FeedViewModel(userName: "aidanjames"), post: DataUniverse.shared.allPosts.first!)
     }
 }

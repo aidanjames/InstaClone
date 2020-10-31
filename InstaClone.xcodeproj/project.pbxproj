@@ -16,6 +16,8 @@
 		3D2CAAB42544A60600CCC033 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2CAAB32544A60600CCC033 /* SearchView.swift */; };
 		3D2CAAB72544A66800CCC033 /* AddContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2CAAB62544A66800CCC033 /* AddContentView.swift */; };
 		3D2CAABA2544A6CF00CCC033 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2CAAB92544A6CF00CCC033 /* ActivityView.swift */; };
+		3D42948E254D7667008EDE5A /* DataAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D42948D254D7667008EDE5A /* DataAccess.swift */; };
+		3D429491254D7C1C008EDE5A /* FileManager+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D429490254D7C1C008EDE5A /* FileManager+Ext.swift */; };
 		3D8AE7DC254A03050063F24E /* PostCommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8AE7DB254A03050063F24E /* PostCommentsView.swift */; };
 		3D8AE7DF254A03DE0063F24E /* PosterProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8AE7DE254A03DE0063F24E /* PosterProfileView.swift */; };
 		3D8AE7E2254A045D0063F24E /* PostActionRibbonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8AE7E1254A045D0063F24E /* PostActionRibbonView.swift */; };
@@ -43,6 +45,8 @@
 		3D2CAAB32544A60600CCC033 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		3D2CAAB62544A66800CCC033 /* AddContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContentView.swift; sourceTree = "<group>"; };
 		3D2CAAB92544A6CF00CCC033 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
+		3D42948D254D7667008EDE5A /* DataAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataAccess.swift; sourceTree = "<group>"; };
+		3D429490254D7C1C008EDE5A /* FileManager+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Ext.swift"; sourceTree = "<group>"; };
 		3D8AE7DB254A03050063F24E /* PostCommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCommentsView.swift; sourceTree = "<group>"; };
 		3D8AE7DE254A03DE0063F24E /* PosterProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterProfileView.swift; sourceTree = "<group>"; };
 		3D8AE7E1254A045D0063F24E /* PostActionRibbonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostActionRibbonView.swift; sourceTree = "<group>"; };
@@ -159,6 +163,8 @@
 				3D94099B2548B17A0089C191 /* PreviewMockData.swift */,
 				3D9065C1254B58E300020D28 /* Date+Ext.swift */,
 				3DA30E30254CAFDA00370585 /* Haptics.swift */,
+				3D42948D254D7667008EDE5A /* DataAccess.swift */,
+				3D429490254D7C1C008EDE5A /* FileManager+Ext.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -245,9 +251,11 @@
 				3D8AE7E7254A070D0063F24E /* SignedOnUserStoryListView.swift in Sources */,
 				3D9409982548B1160089C191 /* PostListView.swift in Sources */,
 				3DA30E31254CAFDA00370585 /* Haptics.swift in Sources */,
+				3D42948E254D7667008EDE5A /* DataAccess.swift in Sources */,
 				3D2CAABA2544A6CF00CCC033 /* ActivityView.swift in Sources */,
 				3D2CAA9B2544A42900CCC033 /* InstaCloneApp.swift in Sources */,
 				3D8AE7EB254A072B0063F24E /* InfluencerStoryListView.swift in Sources */,
+				3D429491254D7C1C008EDE5A /* FileManager+Ext.swift in Sources */,
 				3D2CAAAB2544A53000CCC033 /* AppView.swift in Sources */,
 				3D8AE7DC254A03050063F24E /* PostCommentsView.swift in Sources */,
 				3D9409942548AFA60089C191 /* SignOnPage.swift in Sources */,

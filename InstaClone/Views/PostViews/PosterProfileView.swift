@@ -12,12 +12,12 @@ struct PosterProfileView: View {
     
     var body: some View {
         HStack {
-            Image(post.postedBy.imageUrl)
+            Image(DataUniverse.shared.fetchUserWithId(post.postedBy).imageUrl)
                 .resizable()
                 .scaledToFill()
                 .clipShape(Circle())
                 .frame(width: 40, height: 40)
-            Text(post.postedBy.userName)
+            Text(DataUniverse.shared.fetchUserWithId(post.postedBy).userName)
                 .font(.footnote)
                 .bold()
             Spacer()
@@ -28,6 +28,6 @@ struct PosterProfileView: View {
 
 struct PosterProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        PosterProfileView(post: PreviewMockData.getSignedOnUser().following.first!.posts.first!)
+        PosterProfileView(post: DataUniverse.shared.allPosts[0])
     }
 }

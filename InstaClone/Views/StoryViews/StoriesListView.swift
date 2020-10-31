@@ -14,9 +14,9 @@ struct StoriesListView: View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(alignment: .bottom) {
                 SignedOnUserStoryListView(user: viewModel.signedOnUser!)
-                ForEach(viewModel.signedOnUser!.following) { influencer in
-                    if influencer.hasUnseenStories {
-                        InfluencerStoryListView(user: influencer)
+                ForEach(DataUniverse.shared.fetchUsersForIds(viewModel.signedOnUser!.following)) { influencer in
+                    if DataUniverse.shared.userHasUnseenStories(signedOnUser: viewModel.signedOnUser!, user: influencer) {
+                        InfluencerStoryListView(signedOnUser: viewModel.signedOnUser!, user: influencer)
                     }
                 }
             }
@@ -29,6 +29,6 @@ struct StoriesListView: View {
 
 struct StoriesListView_Previews: PreviewProvider {
     static var previews: some View {
-        StoriesListView(viewModel: FeedViewModel())
+        StoriesListView(viewModel: FeedViewModel(userName: "aidanjames"))
     }
 }

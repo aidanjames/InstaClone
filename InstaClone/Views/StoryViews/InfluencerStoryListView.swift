@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct InfluencerStoryListView: View {
+    var signedOnUser: UserProfile
     var user: UserProfile
     
     var body: some View {
@@ -18,7 +19,7 @@ struct InfluencerStoryListView: View {
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 60, height: 60)
                     .clipShape(Circle())
-                if user.hasUnseenStories {
+                if DataUniverse.shared.userHasUnseenStories(signedOnUser: signedOnUser, user: user) {
                     Circle()
                         .stroke(Color.pink, lineWidth: 2)
                         .frame(width: 65, height: 65)
@@ -30,10 +31,11 @@ struct InfluencerStoryListView: View {
         }
         .padding(.horizontal, 5)
     }
+
 }
 
 struct InfluencerSotryView_Previews: PreviewProvider {
     static var previews: some View {
-        InfluencerStoryListView(user: PreviewMockData.getSignedOnUser().following.first!)
+        InfluencerStoryListView(signedOnUser: UserProfile(userName: "doug", name: "doug", imageUrl: "primaryProfile"), user: UserProfile(userName: "jacob", name: "Jake", imageUrl: "secondaryProfile"))
     }
 }

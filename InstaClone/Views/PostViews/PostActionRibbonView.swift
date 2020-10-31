@@ -12,7 +12,7 @@ struct PostActionRibbonView: View {
     var post: Post
     
     var userLikesPost: Bool {
-        viewModel.signedOnUser!.likes.contains { $0.id == post.id }
+        return !post.likes.intersection(viewModel.signedOnUser!.likes).isEmpty
     }
     
     var body: some View {
@@ -36,6 +36,6 @@ struct PostActionRibbonView: View {
 
 struct PostActionRibbonView_Previews: PreviewProvider {
     static var previews: some View {
-        PostActionRibbonView(viewModel: FeedViewModel(), post: PreviewMockData.getSignedOnUser().following.first!.posts.first!)
+        PostActionRibbonView(viewModel: FeedViewModel(userName: "aidanjames"), post: DataUniverse.shared.allPosts[1])
     }
 }

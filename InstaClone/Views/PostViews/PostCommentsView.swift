@@ -12,31 +12,31 @@ struct PostCommentsView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            if !post.likedBy.isEmpty {
-                Text("\(post.likedBy.count) \(post.likedBy.count == 1 ? "like" : "likes")")
+            if !post.likes.isEmpty {
+                Text("\(post.likes.count) \(post.likes.count == 1 ? "like" : "likes")")
                     .bold()
             }
             Group {
-                Text(post.postedBy.userName)
+                Text(DataUniverse.shared.fetchUserWithId(post.postedBy).userName)
                     .bold()
                     + Text(" \(post.postText ?? "")")
             }.lineLimit(2)
             
-            if let firstComment = post.comments.first {
+            if let firstComment = DataUniverse.shared.fetchComentsForPost(postId: post.id).first {
                 Group {
-                    Text(firstComment.commentor.userName)
+                    Text(DataUniverse.shared.fetchUserWithId(firstComment.commentor).userName) //firstComment.commentor.userName)
                         .bold()
                         + Text(" \(firstComment.comment)")
                 }.lineLimit(2)
             }
-            if post.comments.count > 2 {
+            if DataUniverse.shared.fetchComentsForPost(postId: post.id).count > 2 {
                 Text("View all \(post.comments.count) comments")
                     .foregroundColor(.secondary)
             }
             
-            if let lastComment = post.comments.last {
+            if let lastComment = DataUniverse.shared.fetchComentsForPost(postId: post.id).last {
                 Group {
-                    Text(lastComment.commentor.userName)
+                    Text(DataUniverse.shared.fetchUserWithId(lastComment.commentor).userName)
                         .bold()
                         + Text(" \(lastComment.comment)")
                 }.lineLimit(2)
@@ -55,6 +55,6 @@ struct PostCommentsView: View {
 
 struct PostCommentsView_Previews: PreviewProvider {
     static var previews: some View {
-        PostCommentsView(post: PreviewMockData.getSignedOnUser().following.first!.posts.first!)
+        PostCommentsView(post: DataUniverse.shared.allPosts.first!)
     }
 }

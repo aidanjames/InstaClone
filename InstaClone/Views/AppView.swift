@@ -45,6 +45,6 @@ struct AppView: View {
 
 struct AppView_Previews: PreviewProvider {
     static var previews: some View {
-        AppView(viewModel: FeedViewModel())
+        AppView(viewModel: FeedViewModel(userName: "aidanjames"))
     }
 }

@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct InstaCloneApp: App {
     
-    @ObservedObject var viewModel = FeedViewModel()
+    @ObservedObject var viewModel = FeedViewModel(userName: "aidanjames")
     
     var body: some Scene {
         WindowGroup {

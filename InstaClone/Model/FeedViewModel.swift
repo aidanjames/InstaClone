@@ -8,64 +8,48 @@
 import SwiftUI
 
 class FeedViewModel: ObservableObject {
-    @Published var signedOnUser: UserProfile?
+    var userName: String
+    var signedOnUser: UserProfile?
+    @Published var postsForMainFeed = [Post]()
+    @Published var commentsForMainFeed = [PostComment]()
+    @Published var postsForStoriesFeed = [Post]()
     
-    init() { signedOnUser = PreviewMockData.getSignedOnUser() }
-    
-    func getPostsForFeed() -> [Post] {
-        var postsToReturn = [Post]()
-        
-        if let user = self.signedOnUser {
-            for influencer in user.following {
-                for post in influencer.posts.filter({ $0.postType == .photo || $0.postType == .video }) {
-                    postsToReturn.append(post)
-                }
-            }
-        }
-        return postsToReturn.sorted { $0.date > $1.date }
+    init(userName: String) {
+        self.userName = userName
+        signedOnUser = DataUniverse.shared.fetchSignedOnUserWith(userName: userName)
+        let postsForUser = DataUniverse.shared.fetchAllAvailablePostsForSignedOnUser(signedOnUser!)
+        postsForMainFeed = postsForUser.filter { $0.postType != .story }
+        postsForStoriesFeed = postsForUser.filter { $0.postType == .story}.sorted { $0.date > $1.date }
+        commentsForMainFeed = DataUniverse.shared.fetchAllAvailableCommentsForPosts(postsForMainFeed)
     }
-    
-    
+
     func tappedLikeButton(for post: Post) {
-        if signedOnUserAlreadyLikesPost(post: post) {
-            if let index = signedOnUser!.likes.firstIndex(where: { $0.id == post.id }) {
-                signedOnUser!.likes.remove(at: index)
-                if let influencerIndex = signedOnUser!.following.firstIndex(where: { $0.id == post.postedBy.id }) {
-                    if let postIndex = signedOnUser!.following[influencerIndex].posts.firstIndex(where: { $0.id == post.id }) {
-                        if let likedByIndex = signedOnUser!.following[influencerIndex].posts[postIndex].likedBy.firstIndex(where: { $0.id == signedOnUser!.id } ) {
-                            signedOnUser!.following[influencerIndex].posts[postIndex].likedBy.remove(at: likedByIndex)
-                        }
-                    }
-                }
-            }
-        } else {
-            signedOnUser!.likes.append(post)
-            if let influencerIndex = signedOnUser!.following.firstIndex(where: { $0.id == post.postedBy.id }) {
-                if let postIndex = signedOnUser!.following[influencerIndex].posts.firstIndex(where: { $0.id == post.id }) {
-                    signedOnUser!.following[influencerIndex].posts[postIndex].likedBy.append(signedOnUser!)
-                }
-            }
+        let commonLike = post.likes.intersection(signedOnUser!.likes)
+        
+        guard commonLike.isEmpty else {
+            DataUniverse.shared.deleteLike(likeId: commonLike.first!)
+            updateUi()
+            return
         }
+        DataUniverse.shared.addLike(userId: signedOnUser!.id, postId: post.id)
+        
+        updateUi()
     }
     
-    func doubleTapped(post: Post) {
+    func doubleTappedPost(_ post: Post) {
+        let commonLike = post.likes.intersection(signedOnUser!.likes)
         
-        guard !signedOnUserAlreadyLikesPost(post: post) else { return }
+        guard commonLike.isEmpty else { return }
+        DataUniverse.shared.addLike(userId: signedOnUser!.id, postId: post.id)
         
-        if let influencerIndex = signedOnUser!.following.firstIndex(where: { $0.id == post.postedBy.id }) {
-            if let postIndex = signedOnUser!.following[influencerIndex].posts.firstIndex(where: { $0.id == post.id }) {
-                signedOnUser!.following[influencerIndex].posts[postIndex].likedBy.append(signedOnUser!)
-                signedOnUser!.likes.append(post)
-            }
-        }
+        updateUi()
     }
     
-    func signedOnUserAlreadyLikesPost(post: Post) -> Bool {
-        if let influencerIndex = signedOnUser!.following.firstIndex(where: { $0.id == post.postedBy.id }) {
-            if let postIndex = signedOnUser!.following[influencerIndex].posts.firstIndex(where: { $0.id == post.id }) {
-                return signedOnUser!.following[influencerIndex].posts[postIndex].likedBy.contains(where: { $0.id == signedOnUser!.id })
-            }
-        }
-        return false
+    func updateUi() {
+        signedOnUser = DataUniverse.shared.fetchSignedOnUserWith(userName: userName)
+        let postsForUser = DataUniverse.shared.fetchAllAvailablePostsForSignedOnUser(signedOnUser!)
+        postsForMainFeed = postsForUser.filter { $0.postType != .story }
+        postsForStoriesFeed = postsForUser.filter { $0.postType == .story}.sorted { $0.date > $1.date }
+        commentsForMainFeed = DataUniverse.shared.fetchAllAvailableCommentsForPosts(postsForMainFeed)
     }
 }
