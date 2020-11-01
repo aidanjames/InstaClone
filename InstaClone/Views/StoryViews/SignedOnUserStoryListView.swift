@@ -18,7 +18,7 @@ struct SignedOnUserStoryListView: View {
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 60, height: 60)
                     .clipShape(Circle())
-                if DataUniverse.shared.userHasUnseenStories(signedOnUser: user, user: user) {
+                if !DataUniverse.shared.unseenStories(signedOnUser: user, user: user).isEmpty {
                     Circle()
                         .stroke(Color.pink, lineWidth: 2)
                         .frame(width: 65, height: 65)

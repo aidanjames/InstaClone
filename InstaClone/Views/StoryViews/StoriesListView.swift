@@ -15,8 +15,13 @@ struct StoriesListView: View {
             HStack(alignment: .bottom) {
                 SignedOnUserStoryListView(user: viewModel.signedOnUser!)
                 ForEach(DataUniverse.shared.fetchUsersForIds(viewModel.signedOnUser!.following)) { influencer in
-                    if DataUniverse.shared.userHasUnseenStories(signedOnUser: viewModel.signedOnUser!, user: influencer) {
+                    if !DataUniverse.shared.unseenStories(signedOnUser: viewModel.signedOnUser!, user: influencer).isEmpty {
                         InfluencerStoryListView(signedOnUser: viewModel.signedOnUser!, user: influencer)
+                            .onTapGesture {
+                                for story in DataUniverse.shared.fetchStoriesForUser(userId: influencer.id) {
+                                    viewModel.watchedStory(storyId: story.id)
+                                }
+                            }
                     }
                 }
             }

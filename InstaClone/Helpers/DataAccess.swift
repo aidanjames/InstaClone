@@ -89,10 +89,16 @@ class DataUniverse {
         save()
     }
     
-    func userHasUnseenStories(signedOnUser: UserProfile, user: UserProfile) -> Bool {
+    func unseenStories(signedOnUser: UserProfile, user: UserProfile) -> [UUID] {
         let storiesSet = Set(allPosts.filter { $0.postedBy == user.id }.filter { $0.postType == .story }.map { $0.id }.map { $0 })
         let seenStories = storiesSet.intersection(signedOnUser.seenPosts)
-        return storiesSet.count > seenStories.count
+        return Array(storiesSet.subtracting(seenStories))
+    }
+    
+    func hasWatchedStory(signedOnUser: UserProfile, story: UUID) {
+        if let userIndex = allUsers.firstIndex(where: { $0.id == signedOnUser.id }) {
+            allUsers[userIndex].seenPosts.insert(story)
+        }
     }
     
     func fetchUsersForIds(_ ids: Set<UUID>) -> [UserProfile] {
@@ -108,7 +114,11 @@ class DataUniverse {
         return allComments.filter { $0.inReplyTo == postId }.sorted { $0.date > $1.date }
     }
     
-     
+    func fetchStoriesForUser(userId: UUID) -> [Post] {
+        return allPosts.filter { $0.postedBy == userId }.filter { $0.postType == .story }
+    }
+    
+    
     private func save() {
         FileManager.default.writeData(allUsers, to: "users")
         FileManager.default.writeData(allPosts, to: "posts")

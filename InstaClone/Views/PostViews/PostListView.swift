@@ -14,7 +14,7 @@ struct PostListView: View {
     
     var body: some View {
         VStack {
-            PosterProfileView(post: post)
+            PosterProfileView(signedOnUser: viewModel.signedOnUser!, post: post, viewModel: viewModel)
             ZStack {
                 Image(post.postUrl)
                     .resizable()

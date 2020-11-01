@@ -16,11 +16,7 @@ class FeedViewModel: ObservableObject {
     
     init(userName: String) {
         self.userName = userName
-        signedOnUser = DataUniverse.shared.fetchSignedOnUserWith(userName: userName)
-        let postsForUser = DataUniverse.shared.fetchAllAvailablePostsForSignedOnUser(signedOnUser!)
-        postsForMainFeed = postsForUser.filter { $0.postType != .story }
-        postsForStoriesFeed = postsForUser.filter { $0.postType == .story}.sorted { $0.date > $1.date }
-        commentsForMainFeed = DataUniverse.shared.fetchAllAvailableCommentsForPosts(postsForMainFeed)
+        updateUi()
     }
 
     func tappedLikeButton(for post: Post) {
@@ -32,7 +28,6 @@ class FeedViewModel: ObservableObject {
             return
         }
         DataUniverse.shared.addLike(userId: signedOnUser!.id, postId: post.id)
-        
         updateUi()
     }
     
@@ -41,13 +36,18 @@ class FeedViewModel: ObservableObject {
         
         guard commonLike.isEmpty else { return }
         DataUniverse.shared.addLike(userId: signedOnUser!.id, postId: post.id)
-        
+        updateUi()
+    }
+    
+    func watchedStory(storyId: UUID) {
+        DataUniverse.shared.hasWatchedStory(signedOnUser: signedOnUser!, story: storyId)
         updateUi()
     }
     
     func updateUi() {
         signedOnUser = DataUniverse.shared.fetchSignedOnUserWith(userName: userName)
-        let postsForUser = DataUniverse.shared.fetchAllAvailablePostsForSignedOnUser(signedOnUser!)
+        guard let signedOnUser = signedOnUser else { return }
+        let postsForUser = DataUniverse.shared.fetchAllAvailablePostsForSignedOnUser(signedOnUser)
         postsForMainFeed = postsForUser.filter { $0.postType != .story }
         postsForStoriesFeed = postsForUser.filter { $0.postType == .story}.sorted { $0.date > $1.date }
         commentsForMainFeed = DataUniverse.shared.fetchAllAvailableCommentsForPosts(postsForMainFeed)

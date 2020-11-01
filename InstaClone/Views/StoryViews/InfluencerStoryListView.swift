@@ -19,9 +19,13 @@ struct InfluencerStoryListView: View {
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 60, height: 60)
                     .clipShape(Circle())
-                if DataUniverse.shared.userHasUnseenStories(signedOnUser: signedOnUser, user: user) {
+                if !DataUniverse.shared.unseenStories(signedOnUser: signedOnUser, user: user).isEmpty {
                     Circle()
                         .stroke(Color.pink, lineWidth: 2)
+                        .frame(width: 65, height: 65)
+                } else {
+                    Circle()
+                        .stroke(Color.secondary, lineWidth: 1)
                         .frame(width: 65, height: 65)
                 }
             }
@@ -31,11 +35,11 @@ struct InfluencerStoryListView: View {
         }
         .padding(.horizontal, 5)
     }
-
+    
 }
 
 struct InfluencerSotryView_Previews: PreviewProvider {
     static var previews: some View {
-        InfluencerStoryListView(signedOnUser: UserProfile(userName: "doug", name: "doug", imageUrl: "primaryProfile"), user: UserProfile(userName: "jacob", name: "Jake", imageUrl: "secondaryProfile"))
+        InfluencerStoryListView(signedOnUser: DataUniverse.shared.allUsers.first!, user: DataUniverse.shared.allUsers[1])
     }
 }
