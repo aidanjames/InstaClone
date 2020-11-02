@@ -29,8 +29,10 @@ struct FeedView: View {
                         .font(.title)
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Image(systemName: "paperplane")
-                        .font(.title)
+                    Button(action: { viewModel.addMockStory() }) {
+                        Image(systemName: "paperplane")
+                            .font(.title)
+                    }
                 }
                 ToolbarItem(placement: .navigationBarLeading) {
                     Image(systemName: "camera")

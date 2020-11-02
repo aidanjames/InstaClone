@@ -44,6 +44,13 @@ class FeedViewModel: ObservableObject {
         updateUi()
     }
     
+    func addMockStory() {
+        let randomNumber = Int.random(in: 0...2)
+        let newPost = Post(postedBy: DataUniverse.shared.allUsers[randomNumber].id, postType: .story, postUrl: "")
+        DataUniverse.shared.addPostForUser(user: DataUniverse.shared.allUsers[randomNumber], post: newPost)
+        updateUi()
+    }
+    
     func updateUi() {
         signedOnUser = DataUniverse.shared.fetchSignedOnUserWith(userName: userName)
         guard let signedOnUser = signedOnUser else { return }

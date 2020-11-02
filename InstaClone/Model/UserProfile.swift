@@ -45,6 +45,12 @@ struct Post: Identifiable, Codable {
     var comments = Set<UUID>() // comment id
     var likes = Set<UUID>() // like id
     var seenBy = Set<UUID>() // user id
+    var expiry: Date? {
+        if postType == .story {
+            return date.addingTimeInterval(86400)
+        }
+        return nil
+    }
 }
 
 struct PostComment: Identifiable, Codable {

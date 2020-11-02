@@ -98,6 +98,7 @@ class DataUniverse {
     func hasWatchedStory(signedOnUser: UserProfile, story: UUID) {
         if let userIndex = allUsers.firstIndex(where: { $0.id == signedOnUser.id }) {
             allUsers[userIndex].seenPosts.insert(story)
+            save()
         }
     }
     
@@ -117,6 +118,16 @@ class DataUniverse {
     func fetchStoriesForUser(userId: UUID) -> [Post] {
         return allPosts.filter { $0.postedBy == userId }.filter { $0.postType == .story }
     }
+    
+    func addPostForUser(user: UserProfile, post: Post) {
+        if let userIndex = allUsers.firstIndex(where: { $0.id == user.id } ) {
+            allUsers[userIndex].posts.insert(post.id)
+        }
+        allPosts.append(post)
+        save()
+    }
+    
+    
     
     
     private func save() {
