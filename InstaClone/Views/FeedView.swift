@@ -35,8 +35,10 @@ struct FeedView: View {
                     }
                 }
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Image(systemName: "camera")
-                        .font(.title)
+                    Button(action: { viewModel.sortStoriesForFeed() }) {
+                        Image(systemName: "camera")
+                            .font(.title)
+                    }
                 }
             }
         }
