@@ -57,29 +57,34 @@ class FeedViewModel: ObservableObject {
         var storiesGroupedByUser = [[Post]]()
         
         // 2. Fetch an array of all Posts of type .story and assign to a new array of type [Post]
-        var allStoriesSorted: [Post] = DataUniverse.shared.allPosts.filter { $0.postType == .story }.sorted { $0.date < $1.date }
+        var allStoriesSorted: [Post] = DataUniverse.shared.allPosts.filter { $0.postType == .story && $0.expiry! > Date() }.sorted { $0.date > $1.date }
+        
+        var mostRecentUnseenStoryIndex = -1
         
         while !allStoriesSorted.isEmpty {
             // 3. Find the most recently created unseen story and identify the associated UserProfile
-            var mostRecentUnseenStory: Post?
-            while mostRecentUnseenStory == nil {
-                for story in allStoriesSorted {
-                    if !signedOnUser!.seenPosts.contains(story.id) {
-                        mostRecentUnseenStory = story
+            for i in 0..<allStoriesSorted.count {
+                if !signedOnUser!.seenPosts.contains(where: { $0 == allStoriesSorted[i].id }) {
+                    mostRecentUnseenStoryIndex = i
+                    break
+                }
+            }
+            
+            if mostRecentUnseenStoryIndex != -1 {
+                let mostRecentUnseenStory = allStoriesSorted[mostRecentUnseenStoryIndex]
+                
+                // 4. Get all stories for the UserProfile from 3 and populate into a new array of [Post], append this to the [[Popst]] array created in 1
+                let allPostsForMostRecentUnseenPoster = DataUniverse.shared.allPosts.filter( { $0.postedBy == mostRecentUnseenStory.postedBy })
+                storiesGroupedByUser.append(allPostsForMostRecentUnseenPoster)
+                
+                // 5. Remove all these stories from the [Post] array in 2
+                for post in allPostsForMostRecentUnseenPoster {
+                    if let index = allStoriesSorted.firstIndex(where: { $0.id == post.id }) {
+                        allStoriesSorted.remove(at: index)
                     }
                 }
             }
-            
-            // 4. Get all stories for the UserProfile from 3 and populate into a new array of [Post], append this to the [[Popst]] array created in 1
-            let allPostsForMostRecentUnseenPoster = DataUniverse.shared.allPosts.filter( { $0.postedBy == mostRecentUnseenStory?.id })
-            storiesGroupedByUser.append(allPostsForMostRecentUnseenPoster)
-            
-            // 5. Remove all these stories from the [Post] array in 2
-            for post in allPostsForMostRecentUnseenPoster {
-                if let index = allStoriesSorted.firstIndex(where: { $0.id == post.id }) {
-                    allStoriesSorted.remove(at: index)
-                }
-            }
+
         }
         storiesToView = storiesGroupedByUser
         print(storiesGroupedByUser)
