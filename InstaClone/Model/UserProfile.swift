@@ -47,7 +47,7 @@ struct Post: Identifiable, Codable {
     var seenBy = Set<UUID>() // user id
     var expiry: Date? {
         if postType == .story {
-            return date.addingTimeInterval(120)
+            return date.addingTimeInterval(86400)
         }
         return nil
     }

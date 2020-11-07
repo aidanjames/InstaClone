@@ -63,7 +63,7 @@ class FeedViewModel: ObservableObject {
         
         while !allStoriesSorted.isEmpty {
             // 3. Find the most recently created unseen story and identify the associated UserProfile
-            for i in 0..<allStoriesSorted.count {
+            for i in 0..<allStoriesSorted.count - 1 {
                 if !signedOnUser!.seenPosts.contains(where: { $0 == allStoriesSorted[i].id }) {
                     mostRecentUnseenStoryIndex = i
                     break
@@ -74,11 +74,21 @@ class FeedViewModel: ObservableObject {
                 let mostRecentUnseenStory = allStoriesSorted[mostRecentUnseenStoryIndex]
                 
                 // 4. Get all stories for the UserProfile from 3 and populate into a new array of [Post], append this to the [[Popst]] array created in 1
-                let allPostsForMostRecentUnseenPoster = DataUniverse.shared.allPosts.filter( { $0.postedBy == mostRecentUnseenStory.postedBy })
+                let allPostsForMostRecentUnseenPoster = DataUniverse.shared.allPosts.filter { $0.postedBy == mostRecentUnseenStory.postedBy }
                 storiesGroupedByUser.append(allPostsForMostRecentUnseenPoster)
                 
                 // 5. Remove all these stories from the [Post] array in 2
                 for post in allPostsForMostRecentUnseenPoster {
+                    if let index = allStoriesSorted.firstIndex(where: { $0.id == post.id }) {
+                        allStoriesSorted.remove(at: index)
+                    }
+                }
+            } else {
+                let mostRecentPoster = allStoriesSorted.first!.postedBy
+                let allPostsForMostRecentPoster = DataUniverse.shared.allPosts.filter { $0.postedBy == mostRecentPoster }
+                storiesGroupedByUser.append(allPostsForMostRecentPoster)
+                
+                for post in allPostsForMostRecentPoster {
                     if let index = allStoriesSorted.firstIndex(where: { $0.id == post.id }) {
                         allStoriesSorted.remove(at: index)
                     }
@@ -88,6 +98,7 @@ class FeedViewModel: ObservableObject {
         }
         storiesToView = storiesGroupedByUser
         print(storiesGroupedByUser)
+        print(storiesGroupedByUser.count)
     }
     
     
