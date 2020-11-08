@@ -9,22 +9,29 @@ import SwiftUI
 
 struct StoriesListView: View {
     @ObservedObject var viewModel: FeedViewModel
+    @State private var showingStoriesPlayerView = false
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(alignment: .bottom) {
                 SignedOnUserStoryListView(user: viewModel.signedOnUser!)
                     .onTapGesture {
-                        for story in DataUniverse.shared.unseenStories(signedOnUser: viewModel.signedOnUser!, user: viewModel.signedOnUser!) {
-                            viewModel.watchedStory(storyId: story)
-                        }
+                        print("Here")
+                        showingStoriesPlayerView = true
+//                        for story in DataUniverse.shared.unseenStories(signedOnUser: viewModel.signedOnUser!, user: viewModel.signedOnUser!) {
+//                            viewModel.watchedStory(storyId: story)
+//                        }
+                    }
+                    .sheet(isPresented: $showingStoriesPlayerView) {
+                        Text("Placeholder for storiesPlayerView")
                     }
                 ForEach(DataUniverse.shared.fetchUsersForIds(viewModel.signedOnUser!.following)) { influencer in
                     InfluencerStoryListView(signedOnUser: viewModel.signedOnUser!, user: influencer)
                         .onTapGesture {
-                            for story in DataUniverse.shared.unseenStories(signedOnUser: viewModel.signedOnUser!, user: influencer) {
-                                viewModel.watchedStory(storyId: story)
-                            }
+                            showingStoriesPlayerView = true
+//                            for story in DataUniverse.shared.unseenStories(signedOnUser: viewModel.signedOnUser!, user: influencer) {
+//                                viewModel.watchedStory(storyId: story)
+//                            }
                         }
                 }
             }
