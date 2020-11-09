@@ -127,6 +127,11 @@ class DataUniverse {
         save()
     }
     
+    func fetchPostsForSignedOnUser(_ user: UserProfile) -> [Post] {
+        let allPostsForUser = allPosts.filter { $0.postedBy == user.id }
+        return allPostsForUser.filter { $0.postType != .story }
+    }
+    
     
     
     

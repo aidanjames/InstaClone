@@ -31,6 +31,7 @@
 		3D9409982548B1160089C191 /* PostListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9409972548B1160089C191 /* PostListView.swift */; };
 		3D94099C2548B17A0089C191 /* PreviewMockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D94099B2548B17A0089C191 /* PreviewMockData.swift */; };
 		3DA30E31254CAFDA00370585 /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA30E30254CAFDA00370585 /* Haptics.swift */; };
+		3DF42EA62559C91F009DBF0B /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF42EA52559C91F009DBF0B /* ProfileViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		3D9409972548B1160089C191 /* PostListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListView.swift; sourceTree = "<group>"; };
 		3D94099B2548B17A0089C191 /* PreviewMockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewMockData.swift; sourceTree = "<group>"; };
 		3DA30E30254CAFDA00370585 /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
+		3DF42EA52559C91F009DBF0B /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +153,7 @@
 				3D2CAAB62544A66800CCC033 /* AddContentView.swift */,
 				3D2CAAB92544A6CF00CCC033 /* ActivityView.swift */,
 				3D2CAAAE2544A58500CCC033 /* ProfileView.swift */,
+				3DF42EA52559C91F009DBF0B /* ProfileViewModel.swift */,
 				3D8AE7E5254A06FC0063F24E /* StoryViews */,
 				3D8AE7DA254A02ED0063F24E /* PostViews */,
 			);
@@ -253,6 +256,7 @@
 				3DA30E31254CAFDA00370585 /* Haptics.swift in Sources */,
 				3D42948E254D7667008EDE5A /* DataAccess.swift in Sources */,
 				3D2CAABA2544A6CF00CCC033 /* ActivityView.swift in Sources */,
+				3DF42EA62559C91F009DBF0B /* ProfileViewModel.swift in Sources */,
 				3D2CAA9B2544A42900CCC033 /* InstaCloneApp.swift in Sources */,
 				3D8AE7EB254A072B0063F24E /* InfluencerStoryListView.swift in Sources */,
 				3D429491254D7C1C008EDE5A /* FileManager+Ext.swift in Sources */,

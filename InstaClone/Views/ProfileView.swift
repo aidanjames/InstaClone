@@ -8,8 +8,39 @@
 import SwiftUI
 
 struct ProfileView: View {
+    
+    @StateObject var viewModel = ProfileViewModel(signedOnUsername: "aidanjames")
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            VStack {
+                Text("Placeholder")
+            }
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    HStack {
+                        if viewModel.isPrivateProfile {
+                            Image(systemName: "lock")
+                        }
+                        Text(viewModel.signedOnUsername)
+                        Image(systemName: "chevron.down").font(.callout)
+                    }
+                    .font(.title)
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    HStack {
+                        Button(action: {  } ) {
+                            Image(systemName: "plus").font(.title)
+                        }
+                        Button(action: {} ) {
+                            Image(systemName: "line.horizontal.3").font(.title)
+                        }
+                    }
+                    .foregroundColor(.primary)
+                }
+            }
+        }
     }
 }
 
