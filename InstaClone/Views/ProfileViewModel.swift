@@ -16,6 +16,8 @@ class ProfileViewModel: ObservableObject {
     var numberOfFollowers: Int { user.followers.count }
     var numberOfFollowing: Int { user.following.count }
     var isPrivateProfile: Bool { user.isPrivate }
+    var profilePicture: Image { Image(user.imageUrl) }
+    var signedOnUser: UserProfile { user }
     
 
     

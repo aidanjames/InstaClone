@@ -13,8 +13,83 @@ struct ProfileView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
-                Text("Placeholder")
+            VStack(spacing: 20) {
+                HStack {
+                    SignedOnUserStoryListView(user: viewModel.signedOnUser)
+                        .scaleEffect(1.3)
+                    Spacer()
+                    VStack {
+                        Text("\(viewModel.numberOfPosts)").font(.title)
+                        Text("Posts")
+                    }
+                    Spacer()
+                    VStack {
+                        Text("\(viewModel.numberOfFollowers)").font(.title)
+                        Text("Followers")
+                    }
+                    Spacer()
+                    VStack {
+                        Text("\(viewModel.numberOfFollowing)").font(.title)
+                        Text("Following")
+                    }
+                    
+                }
+                .padding(.vertical, 20)
+                .padding(.horizontal)
+                Button(action: {}) {
+                    Text("Edit Profile")
+                        .bold()
+                        .foregroundColor(.primary)
+                        .padding(.vertical, 5)
+                        .frame(maxWidth: .infinity)
+                        .border(Color.secondary)
+                }
+                .padding(.horizontal)
+                
+                VStack(alignment: .leading) {
+                    Text("Story Highlights")
+                        .bold()
+                        .font(.caption)
+                    Text("Keep your favourite stories on your profile")
+                        .font(.caption)
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 20) {
+                            ZStack {
+                                Circle()
+                                    .stroke(Color.secondary)
+                                    .frame(width: 60, height: 60)
+                                Button(action: {}) {
+                                    Image(systemName: "plus")
+                                        .foregroundColor(.primary)
+                                }
+                            }
+                            Circle()
+                                .fill(Color.secondary)
+                                .frame(width: 60, height: 60)
+                            Circle()
+                                .fill(Color.secondary)
+                                .frame(width: 60, height: 60)
+                            Circle()
+                                .fill(Color.secondary)
+                                .frame(width: 60, height: 60)
+                            Circle()
+                                .fill(Color.secondary)
+                                .frame(width: 60, height: 60)
+                            Circle()
+                                .fill(Color.secondary)
+                                .frame(width: 60, height: 60)
+                            Circle()
+                                .fill(Color.secondary)
+                                .frame(width: 60, height: 60)
+                        }
+                        .padding(2)
+                    }
+                    .padding(.top, 10)
+                }
+                .padding(.leading)
+                
+               
+                Spacer()
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
