@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D2AD2F0255C40D700290C11 /* SignedOnUserImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2AD2EF255C40D700290C11 /* SignedOnUserImageView.swift */; };
 		3D2CAA9B2544A42900CCC033 /* InstaCloneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2CAA9A2544A42900CCC033 /* InstaCloneApp.swift */; };
 		3D2CAA9D2544A42900CCC033 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2CAA9C2544A42900CCC033 /* FeedView.swift */; };
 		3D2CAA9F2544A42900CCC033 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D2CAA9E2544A42900CCC033 /* Assets.xcassets */; };
@@ -31,10 +32,12 @@
 		3D9409982548B1160089C191 /* PostListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9409972548B1160089C191 /* PostListView.swift */; };
 		3D94099C2548B17A0089C191 /* PreviewMockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D94099B2548B17A0089C191 /* PreviewMockData.swift */; };
 		3DA30E31254CAFDA00370585 /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA30E30254CAFDA00370585 /* Haptics.swift */; };
+		3DCB3552255C4CA30032E8DE /* GridProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DCB3551255C4CA30032E8DE /* GridProfileView.swift */; };
 		3DF42EA62559C91F009DBF0B /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF42EA52559C91F009DBF0B /* ProfileViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D2AD2EF255C40D700290C11 /* SignedOnUserImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignedOnUserImageView.swift; sourceTree = "<group>"; };
 		3D2CAA972544A42900CCC033 /* InstaClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D2CAA9A2544A42900CCC033 /* InstaCloneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstaCloneApp.swift; sourceTree = "<group>"; };
 		3D2CAA9C2544A42900CCC033 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
@@ -61,6 +64,7 @@
 		3D9409972548B1160089C191 /* PostListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListView.swift; sourceTree = "<group>"; };
 		3D94099B2548B17A0089C191 /* PreviewMockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewMockData.swift; sourceTree = "<group>"; };
 		3DA30E30254CAFDA00370585 /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
+		3DCB3551255C4CA30032E8DE /* GridProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridProfileView.swift; sourceTree = "<group>"; };
 		3DF42EA52559C91F009DBF0B /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -75,6 +79,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D2AD2EE255C40B200290C11 /* ProfileViews */ = {
+			isa = PBXGroup;
+			children = (
+				3D2CAAAE2544A58500CCC033 /* ProfileView.swift */,
+				3DF42EA52559C91F009DBF0B /* ProfileViewModel.swift */,
+				3D2AD2EF255C40D700290C11 /* SignedOnUserImageView.swift */,
+				3DCB3551255C4CA30032E8DE /* GridProfileView.swift */,
+			);
+			path = ProfileViews;
+			sourceTree = "<group>";
+		};
 		3D2CAA8E2544A42900CCC033 = {
 			isa = PBXGroup;
 			children = (
@@ -146,14 +161,13 @@
 		3D94098C2548A6F70089C191 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3D2AD2EE255C40B200290C11 /* ProfileViews */,
 				3D9409932548AFA60089C191 /* SignOnPage.swift */,
 				3D2CAAAA2544A53000CCC033 /* AppView.swift */,
 				3D2CAA9C2544A42900CCC033 /* FeedView.swift */,
 				3D2CAAB32544A60600CCC033 /* SearchView.swift */,
 				3D2CAAB62544A66800CCC033 /* AddContentView.swift */,
 				3D2CAAB92544A6CF00CCC033 /* ActivityView.swift */,
-				3D2CAAAE2544A58500CCC033 /* ProfileView.swift */,
-				3DF42EA52559C91F009DBF0B /* ProfileViewModel.swift */,
 				3D8AE7E5254A06FC0063F24E /* StoryViews */,
 				3D8AE7DA254A02ED0063F24E /* PostViews */,
 			);
@@ -243,6 +257,7 @@
 			files = (
 				3D2CAAB42544A60600CCC033 /* SearchView.swift in Sources */,
 				3D2CAAAF2544A58500CCC033 /* ProfileView.swift in Sources */,
+				3DCB3552255C4CA30032E8DE /* GridProfileView.swift in Sources */,
 				3D94099C2548B17A0089C191 /* PreviewMockData.swift in Sources */,
 				3D8AE7DF254A03DE0063F24E /* PosterProfileView.swift in Sources */,
 				3D2CAAB72544A66800CCC033 /* AddContentView.swift in Sources */,
@@ -251,6 +266,7 @@
 				3D8AE7E2254A045D0063F24E /* PostActionRibbonView.swift in Sources */,
 				3D8AE7F0254A0FE30063F24E /* StoriesListView.swift in Sources */,
 				3D9065C2254B58E300020D28 /* Date+Ext.swift in Sources */,
+				3D2AD2F0255C40D700290C11 /* SignedOnUserImageView.swift in Sources */,
 				3D8AE7E7254A070D0063F24E /* SignedOnUserStoryListView.swift in Sources */,
 				3D9409982548B1160089C191 /* PostListView.swift in Sources */,
 				3DA30E31254CAFDA00370585 /* Haptics.swift in Sources */,

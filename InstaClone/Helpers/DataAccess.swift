@@ -35,12 +35,21 @@ class DataUniverse {
     func fetchAllAvailablePostsForSignedOnUser(_ user: UserProfile) -> [Post] {
         var postsToReturn = [Post]()
         
+        // Get posts for the influencers the user is following
         for userId in user.following {
             if let user = allUsers.first(where: { $0.id == userId } ) {
                 for postId in user.posts {
                     if let post = allPosts.first(where: { $0.id == postId } ) {
                         postsToReturn.append(post)
                     }
+                }
+            }
+        }
+        // Get posts for the signed on user
+        if let user = allUsers.first(where: { $0.id == user.id } ) {
+            for postId in user.posts {
+                if let post = allPosts.first(where: { $0.id == postId } ) {
+                    postsToReturn.append(post)
                 }
             }
         }

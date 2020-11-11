@@ -10,12 +10,22 @@ import SwiftUI
 enum PreviewMockData {
 
     static func createMockData() {
-        var user1 = UserProfile(userName: "aidanjames", name: "Aidan Pendleburyt", imageUrl: "primaryProfile")
+        var user1 = UserProfile(userName: "aidanjames", name: "Aidan James", imageUrl: "primaryProfile")
         var user2 = UserProfile(userName: "therealrock", name: "Rock Johnson", imageUrl: "secondaryProfile")
         var user3 = UserProfile(userName: "kimkardashian", name: "Kim Kardashian West", imageUrl: "tertiaryProfile")
         
         user1.following.insert(user2.id)
         user1.following.insert(user3.id)
+        
+        // USER1'S POSTS
+        var user1Post1 = Post(postedBy: user1.id, postType: .photo, postUrl: "beach")
+        user1Post1.postText = "This is nice."
+        var user1Post2 = Post(postedBy: user1.id, postType: .photo, postUrl: "verygooddog")
+        user1Post2.postText = "GOOOOOOOD BOOOOOY!!!!!!!"
+        let user1Post3 = Post(postedBy: user1.id, postType: .photo, postUrl: "food")
+        user1.posts.insert(user1Post1.id)
+        user1.posts.insert(user1Post2.id)
+        user1.posts.insert(user1Post3.id)
         
         // USER2'S POSTS
         
@@ -98,7 +108,7 @@ enum PreviewMockData {
         FileManager.default.writeData(allUsers, to: "users")
         
         // Save posts
-        let allPosts = [user2Post1, user2Post2, user2Post3, user3Post1, user3Post2, user3Post3]
+        let allPosts = [user1Post1, user1Post2, user1Post3, user2Post1, user2Post2, user2Post3, user3Post1, user3Post2, user3Post3]
         FileManager.default.writeData(allPosts, to: "posts")
         
         // Save comments
